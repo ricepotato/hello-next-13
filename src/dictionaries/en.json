@@ -2,5 +2,8 @@
   "click": "click",
   "greetings": "Hello, next!",
   "server": "server",
-  "client": "client"
+  "client": "client",
+  "Index": {
+    "title": "hello next"
+  }
 }

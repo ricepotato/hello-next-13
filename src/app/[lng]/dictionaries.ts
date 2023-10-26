@@ -1,6 +1,8 @@
 const dictionaries = {
-  en: () => import("./dictionaries/en.json").then((module) => module.default),
-  ko: () => import("./dictionaries/ko.json").then((module) => module.default),
+  en: () =>
+    import("../../dictionaries/en.json").then((module) => module.default),
+  ko: () =>
+    import("../../dictionaries/ko.json").then((module) => module.default),
 };
 
 function getLocaleDictionaries(locale: string) {

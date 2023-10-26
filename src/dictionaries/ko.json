@@ -2,5 +2,8 @@
   "click": "클릭",
   "greetings": "안녕, 넥스트!",
   "server": "서버",
-  "client": "클라이언트"
+  "client": "클라이언트",
+  "Index": {
+    "title": "안녕 넥스트"
+  }
 }

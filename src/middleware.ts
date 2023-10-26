@@ -1,7 +1,13 @@
 import type { NextRequest } from "next/server";
+import createMiddleware from "next-intl/middleware";
 
 const DEFAULT_LOCALE = "ko";
 const locales = [DEFAULT_LOCALE, "en"];
+
+const intlMiddleware = createMiddleware({
+  locales,
+  defaultLocale: DEFAULT_LOCALE,
+});
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
@@ -10,7 +16,9 @@ export function middleware(request: NextRequest) {
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (pathnameHasLocale) return;
+  if (pathnameHasLocale) {
+    return intlMiddleware(request);
+  }
 
   const locale = getLocale(request);
   request.nextUrl.pathname = `/${locale}${pathname}`;
