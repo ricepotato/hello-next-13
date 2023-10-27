@@ -11,6 +11,7 @@ interface Client2PropType {
 }
 
 export default function Page({ params: { lng } }: Client2PropType) {
+  // next-intl 을 사용하여 국제화
   const router = useRouter();
   const [count, setCount] = useState(0);
   const t = useTranslations("Index");

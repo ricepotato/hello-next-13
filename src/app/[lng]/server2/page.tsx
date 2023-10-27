@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 export default function Page({ params: { lng } }: { params: { lng: string } }) {
+  // next-intl 을 사용하여 국제화
   const t = useTranslations("Index");
   return (
     <main>
