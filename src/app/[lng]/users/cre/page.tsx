@@ -9,7 +9,7 @@ export default function Users() {
 
   return (
     <main>
-      <h1>hello next users list!</h1>
+      <h1>hello next users cre!</h1>
       <Link href="/">Home Link</Link>
     </main>
   );

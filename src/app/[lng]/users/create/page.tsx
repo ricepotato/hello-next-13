@@ -9,8 +9,12 @@ export default function Users() {
 
   return (
     <main>
-      <h1>hello next users list!</h1>
+      <h1>hello next users create!</h1>
       <Link href="/">Home Link</Link>
+      <form action={createUser}>
+        <input type="text" name="name" />
+        <button type="submit">submit</button>
+      </form>
     </main>
   );
 }
