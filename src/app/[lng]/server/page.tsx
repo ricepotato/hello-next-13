@@ -14,6 +14,9 @@ export default async function Page({
       <div className="p-2">
         <Link href="/">Home Link</Link>
       </div>
+      <div>
+        <table></table>
+      </div>
       <div className="p-2">
         <button>{dict.click}</button>
       </div>

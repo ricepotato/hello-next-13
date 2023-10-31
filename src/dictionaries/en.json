@@ -5,5 +5,8 @@
   "client": "client",
   "Index": {
     "title": "hello next"
+  },
+  "auth": {
+    "login": "user login"
   }
 }

@@ -3,6 +3,9 @@ import createMiddleware from "next-intl/middleware";
 
 const DEFAULT_LOCALE = "ko";
 const locales = [DEFAULT_LOCALE, "en"];
+const loginPathname = "/auth/login";
+const nextAuthLoginPathname = "/api/auth/signin";
+const nextAuthCookieName = "next-auth.csrf-token";
 
 const intlMiddleware = createMiddleware({
   locales,
@@ -12,6 +15,16 @@ const intlMiddleware = createMiddleware({
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  if (pathname.includes(loginPathname)) {
+    // cookie 에 nextAuthCookieName 없는 경우 nextAuthLoginPathname 으로 redirect 해서 next auth csrf token 발급
+    const nextAuthCookieValue = request.cookies.get(nextAuthCookieName);
+    if (nextAuthCookieValue === undefined) {
+      console.debug("next auth cookie not found. redirect to next auth login.");
+      request.nextUrl.pathname = nextAuthLoginPathname;
+      return Response.redirect(request.nextUrl);
+    }
+  }
+
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );

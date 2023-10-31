@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
+import { AppInitialProps } from "next/app";
 import { Inter } from "next/font/google";
-import { useLocale } from "next-intl";
 import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,6 +19,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
   params: { lng: string };
+  pageProps: AppInitialProps;
 }) {
   let dict = {};
   try {
