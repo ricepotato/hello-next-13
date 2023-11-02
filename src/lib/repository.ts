@@ -1,27 +1,21 @@
 import prisma from "./prisma";
+import { Prisma } from "@prisma/client";
 
 export async function getPlans(where: any) {
-  const plans = await prisma.plan.findMany();
-  return plans;
+  return await prisma.plan.findMany();
 }
 
-export async function insertPlan(
-  name: string,
-  description: string,
-  dailyApiCall: number,
-  activeAccount: number,
-  price: number,
-  chargePerExcess: number
-) {
-  const plan = await prisma.plan.create({
-    data: {
-      name,
-      description,
-      dailyApiCall,
-      activeAccount,
-      price,
-      chargePerExcess,
-    },
-  });
-  return plan;
+export async function insertPlan(plan: {
+  id?: string;
+  name: string;
+  type: string;
+  description?: string | null;
+  daily_api_call: number;
+  active_account: number;
+  price: number;
+  charge_per_exceed: number;
+  created_at?: Date | string;
+  updated_at?: Date | string;
+}) {
+  const newPlan = prisma.plan.create({ data: plan });
 }

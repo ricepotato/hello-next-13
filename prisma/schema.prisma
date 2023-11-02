@@ -1,24 +1,31 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
+model Network {
+  id            String  @id @default(uuid()) @db.VarChar(40)
+  name          String  @unique(map: "idx_name") @db.VarChar(50)
+  symbol_url    String? @db.VarChar(200)
+  chain_id      Int
+  symbol        String  @default("") @db.VarChar(10)
+  block_exp_url String  @default("") @db.VarChar(200)
+}
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model Plan {
-  id        Int      @id @default(autoincrement())
-  name      String
-  description     String
-  dailyApiCall Int
-  activeAccount Int
-  price Int
-  chargePerExcess Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                String   @id @default(uuid()) @db.VarChar(40)
+  name              String   @unique(map: "idx_name") @db.VarChar(50)
+  type              String   @db.VarChar(10)
+  description       String?  @db.VarChar(200)
+  daily_api_call    Int
+  active_account    Int
+  price             Int
+  charge_per_exceed Int
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
 }
